@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-color: rgb(239, 241, 247);
+  height: 100vh;
 }
 
 .App-logo {
@@ -22,6 +24,20 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+#app-header-2{
+  color: rgb(130, 130, 130);
+}
+
+#infoPanel{
+  text-align: left;
+  font-style: italic;
+  font-weight: bold;
+  color: rgb(126, 52, 52);
+}
+
+.p-card-title{
+  /* background-color: gray; */
 }
 
 .App-link {
