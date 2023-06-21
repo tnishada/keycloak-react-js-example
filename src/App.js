@@ -13,7 +13,7 @@ let initOptions = {
   url: 'http://localhost:8080/',
   realm: 'master',
   clientId: 'react-client',
-  onLoad: 'check-sso', // check-sso | login-required
+  onLoad: 'login-required', // check-sso | login-required
   KeycloakResponseType: 'code',
 
   // silentCheckSsoRedirectUri: (window.location.origin + "/silent-check-sso.html")
@@ -50,7 +50,8 @@ function App() {
   const [infoMessage, setInfoMessage] = useState('');
 
   const callBackend = () => {
-    httpClient.get('https://mockbin.com/request')
+    // httpClient.get('https://mockbin.com/request')
+    httpClient.get('http://localhost:4000/')
   };
 
   return (
