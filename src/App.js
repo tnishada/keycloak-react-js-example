@@ -5,6 +5,7 @@ import "primereact/resources/primereact.min.css";
 import '/node_modules/primeflex/primeflex.css'
 import { Button } from 'primereact/button';
 import { Card } from 'primereact/card';
+import { httpClient } from './HttpClient';
 
 import Keycloak from 'keycloak-js';
 
@@ -32,6 +33,10 @@ kc.init({
     console.info("Authenticated");
     console.log('auth', auth)
     console.log('Keycloak', kc)
+    console.log('Access Token', kc.token)
+
+    httpClient.defaults.headers.common['Authorization'] = `Bearer ${kc.token}`;
+
     kc.onTokenExpired = () => {
       console.log('token expired')
     }
@@ -43,6 +48,10 @@ kc.init({
 function App() {
 
   const [infoMessage, setInfoMessage] = useState('');
+
+  const callBackend = () => {
+    httpClient.get('https://mockbin.com/request')
+  };
 
   return (
     <div className="App">
@@ -67,6 +76,11 @@ function App() {
           <Button onClick={() => { kc.logout({ redirectUri: 'http://localhost:3000/' }) }} className="m-1" label='Logout' severity="danger" />
           
         </div>
+      </div>
+      <div className='grid'>
+      <div className="col">
+       <Button onClick={callBackend} className='m-1' label='Send HTTP Request' severity="success" />
+      </div>
       </div>
 
       {/* <div className='grid'>
